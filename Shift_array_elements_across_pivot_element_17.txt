@@ -1,0 +1,43 @@
+#include <stdio.h>
+
+int main()
+{
+    int n,temp;
+    scanf("%d",&n);
+    int arr[n];
+    for(int i=0;i<n;i++)
+    {
+        scanf("%d",&arr[i]);
+    }
+    int i=0,j=n-1;
+    while(i<j)
+    {
+        if(arr[i]>=17 && arr[j]<17)
+        {
+            temp=arr[i];
+            arr[i]=arr[j];
+            arr[j]=temp;
+            i++;
+            j--;
+        }
+        else if(arr[i]<=17 && arr[j]>17)
+        {
+            i++;
+            j--;
+        }
+        else if(arr[i]>=17 && arr[j]>17)
+        {
+            j--;
+        }
+        else
+        {
+            i++;
+        }
+    }
+    printf("Partition is from %d onwards.\n",i);
+    for(i=0;i<n;i++)
+    {
+        printf("%d ",arr[i]);
+    }
+    return 0;
+}
