@@ -1,0 +1,33 @@
+#include <stdio.h>
+
+int repeatedNumber(const int* A, int n1) {
+    int slow = A[0];
+    int fast = A[A[0]];
+    while (slow != fast) {
+        slow = A[slow];
+        fast = A[A[fast]];
+    }
+    
+    fast = 0;
+    while (slow != fast) {
+        slow = A[slow];
+        fast = A[fast];
+    }
+      return slow;
+}
+
+int main() {
+    int t,n,s;
+    scanf("%d",&t);
+    for(int test=0;test<t;test++)
+    {
+        scanf("%d %d",&n,&s);
+        int arr[n];
+        for(int i=0;i<n;i++)
+        {
+            scanf("%d",&arr[i]);
+        }
+       int res=repeatedNumber(arr,n);
+    }
+	return 0;
+}
