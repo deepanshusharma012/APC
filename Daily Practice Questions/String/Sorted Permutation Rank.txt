@@ -1,0 +1,33 @@
+/**
+ * @input A : String termination by '\0'
+ * 
+ * @Output Integer
+ */
+ long long int factorial(int num){
+     long long int fact=1,i;
+     for(i=num;i>0;i--)
+     {
+         fact=fact*i;
+     }
+     return fact%1000003;
+ }
+ 
+int findRank(char* A) {
+    int len=strlen(A);
+    int i,j,c=0;
+    long long int res=0;
+    for(i=0;i<len;i++)
+    {
+        c=0;
+        for(j=i+1;j<len;j++)
+        {
+            if(A[i]>A[j])
+            {
+                c++;
+            }
+        }
+        res=((res%1000003)+(factorial(len-i-1)*c)%1000003)%1000003;
+    }
+    
+    return (res+1);
+}
