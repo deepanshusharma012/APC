@@ -1,0 +1,57 @@
+/**
+ * @input A : Integer array
+ * @input n1 : Integer array's ( A ) length
+ * 
+ * @Output Integer
+ */
+
+ void swap(int *a,int *b)
+ {
+     int temp;
+     temp=*a;
+     *a=*b;
+     *b=temp;
+ }
+ 
+int firstMissingPositive(int* A, int n1) {
+    int i=0,x;
+    for(i=0;i<n1;i++)
+    {
+        if(A[i]>0&&A[i]<=n1+1)
+        {
+            x=A[i];
+            swap(&A[i],&A[A[i]-1]);
+            if(A[i]!=x)
+            {
+                i--;
+            }
+        }
+    }
+    
+    for(i=0;i<n1;i++)
+    {
+        if(A[i]!=i+1)
+        {
+            return i+1;
+        }
+    }
+    
+    return 0;
+}
+
+//-----------InterviewBit Apporoach-------------
+// int firstMissingPositive(int* A, int n1) {
+//     int i = 0;  
+//   while (i < n1) {  
+//      if (A[i] > 0 && A[i] <= n1 && A[i] != i+1 && A[i] != A[A[i]-1]) {  
+//       int temp = A[A[i]-1];  
+//       A[A[i]-1] = A[i];  
+//       A[i] = temp;  
+//      } else {  
+//       ++i;  
+//      }  
+//   }  
+//   i = 0;  
+//   while (i < n1 && A[i] == i+1) ++i;  
+//   return i+1;  
+// }
