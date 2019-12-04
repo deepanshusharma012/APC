@@ -1,0 +1,49 @@
+#include <stdio.h>
+/* Include other headers as needed */
+int main()
+{
+  int t,n,w;
+  scanf("%d",&t);
+  for(int test=0;test<t;test++)
+  {
+    scanf("%d %d",&n,&w);
+    int row=(n/w)+(n%w),col=w;
+    int a[row][w],count=1;
+    
+    for(int i=0;i<row;i++){
+      for(int j=0;j<col;j++){
+        a[i][j]=0;       
+      }
+    }
+    
+    for(int i=0;i<row;i++){
+      for(int j=0;j<col;j++){
+        if(count<=n)
+        a[i][j]=count++;        
+      }
+    }
+    int x;char ch;
+    scanf("%d %c",&x,&ch);
+    int sum=0;
+    if(ch=='R'||ch=='r'){
+      for(int i=0;i<col;i++){
+        sum=sum+a[x-1][i];
+      }
+    }
+    else{
+      for(int i=0;i<row;i++){
+        sum=sum+a[i][x-1];
+      }
+    }
+    
+    printf("%d\n",sum);
+//     for(int i=0;i<row;i++){
+//       for(int j=0;j<col;j++){
+//         printf("%d ",a[i][j]);    
+//       }
+//       printf("\n");
+//     }
+    
+  }
+  return 0;
+}
