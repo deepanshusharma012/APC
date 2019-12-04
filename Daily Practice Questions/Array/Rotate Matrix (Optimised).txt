@@ -1,0 +1,37 @@
+/**
+ * @input A : 2D integer array 
+ * @input n11 : Integer array's ( A ) rows
+ * @input n12 : Integer array's ( A ) columns
+ * 
+ * @Output Void. Just modifies the args passed by reference 
+ */
+void swap(int *a,int *b)
+{
+  int temp=*a;
+  *a=*b;
+  *b=temp;
+} 
+ 
+void rotate(int** a, int n11, int n12) {
+    int i,j,temp;
+    for(i=0;i<n11;i++)
+    {
+        for(j=0;j<i;j++)
+        {
+            temp=a[i][j];
+            a[i][j]=a[j][i];
+            a[j][i]=temp;
+        }
+    }
+    
+    int minCol=0,maxCol=n12-1;
+    while(minCol<maxCol)
+    {
+      for(i=0;i<n11;i++)
+      {
+        swap(&a[i][minCol],&a[i][maxCol]);
+      }
+      minCol++;
+      maxCol--;
+    }
+}
