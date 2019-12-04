@@ -1,0 +1,23 @@
+#include<string.h>
+void sortStrings(int num, char str[][50])
+{
+  char temp[50];
+  for(int i=0;i<num;i++)
+  {
+    for(int j=i+1;j<num;j++)
+    {
+      if(strcmp(str[i],str[j])>0)
+      {
+        strcpy(temp,str[i]);
+        strcpy(str[i],str[j]);
+        strcpy(str[j],temp);
+      }
+    }
+  }
+  
+  for(int i=0;i<num-1;i++)
+  {
+    printf("%s ",str[i]);
+  }
+  printf("%s",str[num-1]);
+}
