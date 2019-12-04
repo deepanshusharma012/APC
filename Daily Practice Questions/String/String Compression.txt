@@ -1,0 +1,36 @@
+#include<string.h>
+void remDuplicates(char *str)
+{
+  int l=strlen(str),c=1;
+  char ch;
+  for(int i=0;i<l;i++)
+  {
+    ch=str[i];
+    if(ch!='*')
+    {
+      c=1;
+      for(int j=i+1;j<l;j++)
+      {
+        if(str[j]==ch)
+        {
+          c++;
+          str[j]='*';
+        }
+        else
+        {
+          break;
+        }
+      }
+      if(c>1){
+        str[i+1]=(char)c+48;
+      }    
+    }
+  }
+  for(int i=0;i<l;i++)
+  {
+    if(str[i]!='*'){
+      printf("%c",str[i]);
+    }
+  }
+  str[0]='\0';
+}
