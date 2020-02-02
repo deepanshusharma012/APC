@@ -1,0 +1,58 @@
+#include <stdio.h>
+
+int precedence(char ch)
+{
+  if(ch=='M'){
+    return 1000;
+  }
+  else if(ch=='D'){
+    return 500;
+  }
+  else if(ch=='C'){
+    return 100;
+  }
+  else if(ch=='L'){
+    return 50;
+  }
+  else if(ch=='X'){
+    return 10;
+  }
+  else if(ch=='V'){
+    return 5;
+  }
+  else if(ch=='I'){
+    return 1;
+  }
+}
+
+int romanToInt(char *a)
+{
+  int num=0;
+  for(int i=0;a[i]!='\0';i++)
+  {
+    if(precedence(a[i])>precedence(a[i+1])){
+      num=num+precedence(a[i]);
+    }
+    else if(precedence(a[i])<precedence(a[i+1])){
+      num=num-precedence(a[i])+precedence(a[i+1]);
+      i++;
+    }
+    else{
+      num=num+precedence(a[i]);
+    }
+  }
+  return num;
+}
+
+int main()
+{
+  int t,i,j=0;
+  char a[50];
+  scanf("%d", &t);
+  while(t--)
+  {
+    scanf("%s", a);
+    printf("%d\n",romanToInt(a));
+  }
+  return 0;
+}
