@@ -56,3 +56,46 @@ int main()
     }
     return 0;
 }
+
+
+Solution 2: (ideal)
+
+class Solution {
+public:
+    vector<int> spiralOrder(vector<vector<int>>& matrix) {
+        vector<int> spiral;
+        if(matrix.empty() || matrix[0].empty()) {
+            return spiral;
+        } 
+
+        int minRow=0, maxRow=matrix.size()-1, minCol=0, maxCol=matrix[0].size()-1;
+
+        while(minRow <= maxRow && minCol <= maxCol) {
+            for (int i = minCol; i <= maxCol; i++) {
+                spiral.push_back(matrix[minRow][i]);
+            }
+            minRow++;
+
+            for (int i = minRow; i <= maxRow; i++) {
+                spiral.push_back(matrix[i][maxCol]);
+            }
+            maxCol--;
+
+            if (minRow <= maxRow) {
+                for (int i = maxCol; i >= minCol; i--) {
+                    spiral.push_back(matrix[maxRow][i]);
+                }
+                maxRow--;
+            }
+
+            if (minCol <= maxCol) {
+                for (int i = maxRow; i >= minRow; i--) {
+                    spiral.push_back(matrix[i][minCol]);
+                }
+                minCol++;
+            }
+        }
+
+        return spiral;
+    }
+};
