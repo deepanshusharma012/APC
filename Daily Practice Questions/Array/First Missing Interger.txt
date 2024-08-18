@@ -55,3 +55,46 @@ int firstMissingPositive(int* A, int n1) {
 //   while (i < n1 && A[i] == i+1) ++i;  
 //   return i+1;  
 // }
+
+
+
+Another approch (optimised):
+
+class Solution {
+public:
+    int firstMissingPositive(vector<int>& nums) {
+        if (nums.empty()) {
+            return 1;
+        }
+
+        bool containOne = false;
+        for (int i=0; i<nums.size(); i++) {
+            if(nums[i] == 1) {
+                containOne = true;
+                break;
+            }
+        }
+
+        if (!containOne) {
+            return 1;
+        }
+
+        for (int i = 0; i < nums.size(); i++) {
+            if (nums[i] <= 0 || nums[i] > nums.size()) {
+                nums[i] = 1;
+            }
+        }
+
+        for (int i = 0; i < nums.size(); i++) {
+            nums[(nums[i]-1)%nums.size()] += nums.size();
+        }
+
+        for (int i = 0; i < nums.size(); i++) {
+            if (nums[i] <= nums.size()) {
+                return i+1;
+            }
+        }
+
+        return nums.size() + 1;
+    }
+};
